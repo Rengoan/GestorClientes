@@ -46,7 +46,7 @@ public class ClientesDaoJDBC {
 
     //OP: listar,buscar,insertar,actualizar,borrar
     //Listar clientes
-    public List<Cliente> listar() throws SQLException {
+    public List<Cliente> listar() {
         //CREAMOS NUESTROS OBJETOS A NULL
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -86,7 +86,7 @@ public class ClientesDaoJDBC {
     }
 
     //Buscar
-    public Cliente buscar(Cliente cliente) throws SQLException {
+    public Cliente buscar(Cliente cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -126,23 +126,23 @@ public class ClientesDaoJDBC {
     }
 
     //Agregar cliente
-    public int insertar(Cliente cliente) throws SQLException {
+    public int insertar(Cliente cliente) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        int registros = 0; //num registros
+        int rows = 0; //num registros
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
 
-            //Asignamos los vamores a los campos de nuestro cliente
+            //Asignamos los valores a los campos de nuestro cliente
             stmt.setString(1, cliente.getNombre());
             stmt.setString(2, cliente.getApellidos());
             stmt.setString(3, cliente.getEmail());
             stmt.setString(4, cliente.getTelefono());
             stmt.setDouble(5, cliente.getSaldo());
 
-            registros = stmt.executeUpdate();
+            rows = stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -152,7 +152,64 @@ public class ClientesDaoJDBC {
             Conexion.close(conn);
         }
 
-        return registros;
+        return rows;
+    }
+
+    //Actualizar cliente
+    public int actualizar(Cliente cliente) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0; //num registros
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_UPDATE);
+
+            //Asignamos los valores de los ?
+            stmt.setString(1, cliente.getNombre());
+            stmt.setString(2, cliente.getApellidos());
+            stmt.setString(3, cliente.getEmail());
+            stmt.setString(4, cliente.getTelefono());
+            stmt.setDouble(5, cliente.getSaldo());
+
+            //Para el id_cliente
+            stmt.setInt(6, cliente.getIdCliente());
+
+            rows = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+
+        return rows;
+    }
+
+    public int eliminar(Cliente cliente) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0; //num registros
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_DELETE);
+
+            stmt.setInt(1, cliente.getIdCliente());
+
+            rows = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+
+        return rows;
     }
 
 }
