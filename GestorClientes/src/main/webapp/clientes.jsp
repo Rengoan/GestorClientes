@@ -26,8 +26,7 @@
             </div>
         </header>
         
-        
-        <h1>Gestor Clientes</h1>
+        <jsp:include page="/WEB-INF/paginas/comunes/Header.jsp"/>
         <ul>
             <c:forEach var="cliente" items="${clientes}">
                 <li>${cliente.nombre} ${cliente.apellidos} ${cliente.email}
