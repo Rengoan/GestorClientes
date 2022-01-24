@@ -14,7 +14,7 @@
     </head>
     <body>
         
-        <header id="main-header" class="py-2 bg-info text-white">
+        <!--<header id="main-header" class="py-2 bg-info text-white">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -24,9 +24,10 @@
                 </div>
                 
             </div>
-        </header>
+        </header>-->
         
         <jsp:include page="/WEB-INF/paginas/comunes/Header.jsp"/>
+        <jsp:include page="/WEB-INF/paginas/comunes/BotonesNavegacion.jsp"/>
         <ul>
             <c:forEach var="cliente" items="${clientes}">
                 <li>${cliente.nombre} ${cliente.apellidos} ${cliente.email}
