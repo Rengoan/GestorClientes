@@ -1,17 +1,11 @@
-<%-- 
-    Document   : Footer
-    Created on : 24 ene. 2022, 10:54:34
-    Author     : Alumno MaÃ±ana
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<footer id="pie-pagina" class="bg-warning text-white mt-5 p-5">
+    <div class="container">
+        <div class="col">
+            <p class="lead text-center">
+                Copyrigth &copy: Juan Luis España Garcia
+            </p>
+            
+        </div>
+        
+    </div>
+</footer>

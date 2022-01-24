@@ -1,4 +1,3 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,12 +27,8 @@
         
         <jsp:include page="/WEB-INF/paginas/comunes/Header.jsp"/>
         <jsp:include page="/WEB-INF/paginas/comunes/BotonesNavegacion.jsp"/>
-        <ul>
-            <c:forEach var="cliente" items="${clientes}">
-                <li>${cliente.nombre} ${cliente.apellidos} ${cliente.email}
-                    ${cliente.telefono} ${cliente.saldo}</li>
-                </c:forEach>
-        </ul>
+        <jsp:include page="/WEB-INF/paginas/clientes/ListadoClientes.jsp"/>
+        <jsp:include page="/WEB-INF/paginas/comunes/Footer.jsp"/>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -43,5 +38,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
+         
     </body>
 </html>
