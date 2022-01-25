@@ -28,5 +28,13 @@ public class ServletControlador extends HttpServlet {
         request.getRequestDispatcher("clientes.jsp").forward(request, response);
 
     }
+    
+    private double calcularTotal(List<Cliente> clientes){
+        double saldoTotal = 0;
+        
+        
+        
+        return saldoTotal;
+    }
 
 }
