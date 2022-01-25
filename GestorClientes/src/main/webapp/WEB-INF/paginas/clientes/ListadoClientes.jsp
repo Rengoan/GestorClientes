@@ -22,12 +22,12 @@
                         <c:forEach var="cliente" items="${clientes}" varStatus="status">
                             <tr>
                                 <td>${status.count}</td>
-                                <td>${cliente.idCliente}</td>
+                                <td>${cliente.id_cliente}</td>
                                 <td>${cliente.nombre} ${cliente.apellidos}</td>
                                 <td><fmt:formatNumber value="${cliente.saldo}" 
                                     type="currency" currencySymbol="&euro;"/></td>
                                 <td>
-                                    <a href="ServletControlador?accion=editarCliente&id_cliente=${cliente.idCliente}" 
+                                    <a href="ServletControlador?accion=editarCliente&idCliente=${cliente.id_cliente}" 
                                        class="btn btn-block">
                                         <i class="fas fa-angle-double-rigth"></i>Editar
 
