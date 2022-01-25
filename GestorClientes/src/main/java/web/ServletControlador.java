@@ -18,11 +18,14 @@ public class ServletControlador extends HttpServlet {
 
         //1. Obtenemos el listado de los clientes
         List<Cliente> clientes = new ClientesDaoJDBC().listar();
+        double saldoTotal = calcularTotal(clientes);
 
         System.out.println("Clientes = " + clientes);
 
         //2. Compartimos el listado de clientes en alcance de request
         request.setAttribute("clientes", clientes);
+        request.setAttribute("saldoTotal", saldoTotal);
+        request.setAttribute("totalClientes", clientes.size());
 
         //3. Redireccionamos el flujo a una nueva pagina
         request.getRequestDispatcher("clientes.jsp").forward(request, response);
@@ -32,7 +35,9 @@ public class ServletControlador extends HttpServlet {
     private double calcularTotal(List<Cliente> clientes){
         double saldoTotal = 0;
         
-        
+        for (Cliente cliente : clientes) {
+            saldoTotal += cliente.getSaldo();
+        }
         
         return saldoTotal;
     }

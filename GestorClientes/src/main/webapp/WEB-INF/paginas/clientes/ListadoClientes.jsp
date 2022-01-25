@@ -22,12 +22,12 @@
                         <c:forEach var="cliente" items="${clientes}" varStatus="status">
                             <tr>
                                 <td>${status.count}</td>
-                                <td>${cliente.id_cliente}</td>
+                                <td>${cliente.idCliente}</td>
                                 <td>${cliente.nombre} ${cliente.apellidos}</td>
                                 <td><fmt:formatNumber value="${cliente.saldo}" 
-                                    type="currency" currencySymbol="&euro;"/></td>
+                                                  type="currency" currencySymbol="&euro;"/></td>
                                 <td>
-                                    <a href="ServletControlador?accion=editarCliente&idCliente=${cliente.id_cliente}" 
+                                    <a href="ServletControlador?accion=editarCliente&idCliente=${cliente.idCliente}" 
                                        class="btn btn-block">
                                         <i class="fas fa-angle-double-rigth"></i>Editar
 
@@ -35,7 +35,7 @@
                                 </td>
                             </tr>
 
-                        
+
                         </c:forEach>
                     </tbody>
                 </table>
@@ -51,11 +51,11 @@
                 </div>
                 <div class="card text-center bg-sucess text-white mb-3">
                     <h1>Clientes Totales</h1>
-                        <h4 class="display-4">
-                            <i class="fas fa-users"></i>${totalClientes}
-                        </h4>
+                    <h4 class="display-4">
+                        <i class="fas fa-users"></i>${totalClientes}
+                    </h4>
                 </div>
-                
+
             </div>
 
         </div>
