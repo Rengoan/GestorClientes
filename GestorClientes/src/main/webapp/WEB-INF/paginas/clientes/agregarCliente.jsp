@@ -12,23 +12,23 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" required/>
+                    <input type="text" name="nombre" class="form-control" required/>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input type="text" name="apellido" required/>
+                    <input type="text" name="apellido" class="form-control" required/>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" required/>
+                    <input type="email" name="email" class="form-control" required/>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Telefono</label>
-                    <input type="tel" name="telefono"/>
+                    <input type="tel" name="telefono" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label for="saldo">Saldo</label>
-                    <input type="number" name="saldo" required/>
+                    <input type="number" name="saldo" class="form-control" step="any" required/>
                 </div>
             </div>
             <div class="modal-footer">
