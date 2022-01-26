@@ -61,7 +61,7 @@ public class ClientesDaoJDBC {
             while (rs.next()) {
 
                 //Extraemos los campos de cada cliente
-                int idCliente = rs.getInt("id_client");
+                int idCliente = rs.getInt("id_cliente");
                 String nombre = rs.getString("nombre");
                 String apellidos = rs.getString("apellidos");
                 String email = rs.getString("email");

@@ -93,7 +93,7 @@ public class ServletControlador extends HttpServlet {
         String saldoString = request.getParameter("saldo");
         double saldo = 0;
 
-        if (saldoString != null && "".equals(saldoString)) {
+        if (saldoString != null && !"".equals(saldoString)) {
             saldo = Double.parseDouble(saldoString);
         }
         
@@ -105,6 +105,6 @@ public class ServletControlador extends HttpServlet {
         System.out.println("registrosModificados = "+registrosModificados);
         
         //4. Redirigimos a la accion por defecto
-        this.accionDefault(request, response);
+//        this.accionDefault(request, response);
     }
 }
