@@ -31,6 +31,39 @@ public class ServletControlador extends HttpServlet {
         request.getRequestDispatcher("clientes.jsp").forward(request, response);
 
     }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException,SQLException{
+        //1. Leemos los parametros de nuestros request
+        String accion = request.getParameter("accion");
+        if (accion != null) {
+            switch(accion){
+                case "insertar":
+                    this.insertarCliente(request, response);
+                    break;
+                default:
+                    this.accionDefault(request,response);
+            }
+        }else{
+            this.accionDefault(request,response);
+        }
+    }
+    
+    private void accionDefault(HttpServletRequest request, HttpServletResponse response)
+            throws IOException,ServletException{
+        
+        //1. Obtenemos el listado de los clientes
+        List<Cliente> clientes = new ClientesDaoJDBC().listar();
+        System.out.println("clientes= "+clientes);
+        
+        //2. Definimos un objeto session para compartir nuestros atributos en un contexto mas amplio
+        HttpSession sesion = request.getSession();
+        
+        //3. Compartir en el nuevo alcance los atributos
+        sesion.setAttribute("clientes", clientes);
+        sesion.setAttribute("totalClientes", clientes.size());
+        sesion.setAttribute("saldoTotal", calcularTotal(clientes));
+    }
     
     private double calcularTotal(List<Cliente> clientes){
         double saldoTotal = 0;

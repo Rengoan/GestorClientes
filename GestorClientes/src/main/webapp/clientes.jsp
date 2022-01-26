@@ -28,10 +28,10 @@
             </div>
         </header>-->
         
-        <jsp:include page="/WEB-INF/paginas/comunes/Header.jsp"/>
-        <jsp:include page="/WEB-INF/paginas/comunes/BotonesNavegacion.jsp"/>
-        <jsp:include page="/WEB-INF/paginas/clientes/ListadoClientes.jsp"/>
-        <jsp:include page="/WEB-INF/paginas/comunes/Footer.jsp"/>
+        <jsp:include page="/paginas/comunes/Header.jsp"/>
+        <jsp:include page="/paginas/comunes/BotonesNavegacion.jsp"/>
+        <jsp:include page="/paginas/clientes/ListadoClientes.jsp"/>
+        <jsp:include page="/paginas/comunes/Footer.jsp"/>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

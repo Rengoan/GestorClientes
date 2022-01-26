@@ -65,6 +65,6 @@
 
 <!--Agregamos el modal de agregarCliente-->
 
-<jsp:include page="/WEB-INF/paginas/clientes/agregarCliente.jsp"/>                   
+<jsp:include page="/paginas/clientes/agregarCliente.jsp"/>                   
 
 
