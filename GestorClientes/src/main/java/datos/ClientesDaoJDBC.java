@@ -1,7 +1,6 @@
 package datos;
 
-import static datos.Conexion.close;
-import static datos.Conexion.getConnection;
+
 import dominio.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,14 +34,14 @@ public class ClientesDaoJDBC {
     private static final String SQL_DELETE = "DELETE FROM clientes  "
             + "WHERE id_cliente = ? ";
 
-    private Connection conexion;
-
-    public ClientesDaoJDBC() {
-    }
-
-    public ClientesDaoJDBC(Connection conexion) {
-        this.conexion = conexion;
-    }
+//    private Connection conexion;
+//
+//    public ClientesDaoJDBC() {
+//    }
+//
+//    public ClientesDaoJDBC(Connection conexion) {
+//        this.conexion = conexion;
+//    }
 
     //OP: listar,buscar,insertar,actualizar,borrar
     //Listar clientes

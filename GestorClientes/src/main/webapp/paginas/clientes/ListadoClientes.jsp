@@ -49,7 +49,7 @@
                         </h4>
                     </div>
                 </div>
-                <div class="card text-center bg-sucess text-white mb-3">
+                <div class="card text-center bg-danger text-white mb-3">
                     <h1>Clientes Totales</h1>
                     <h4 class="display-4">
                         <i class="fas fa-users"></i>${totalClientes}

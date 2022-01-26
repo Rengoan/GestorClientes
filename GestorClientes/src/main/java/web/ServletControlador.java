@@ -16,63 +16,96 @@ public class ServletControlador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //1. Obtenemos el listado de los clientes
-        List<Cliente> clientes = new ClientesDaoJDBC().listar();
-        double saldoTotal = calcularTotal(clientes);
-
-        System.out.println("Clientes = " + clientes);
-
-        //2. Compartimos el listado de clientes en alcance de request
-        request.setAttribute("clientes", clientes);
-        request.setAttribute("saldoTotal", saldoTotal);
-        request.setAttribute("totalClientes", clientes.size());
-
-        //3. Redireccionamos el flujo a una nueva pagina
-        request.getRequestDispatcher("clientes.jsp").forward(request, response);
+        this.accionDefault(request, response);
+//        //1. Obtenemos el listado de los clientes
+//        List<Cliente> clientes = new ClientesDaoJDBC().listar();
+//        double saldoTotal = calcularTotal(clientes);
+//
+//        System.out.println("Clientes = " + clientes);
+//
+//        //2. Compartimos el listado de clientes en alcance de request
+//        request.setAttribute("clientes", clientes);
+//        request.setAttribute("saldoTotal", saldoTotal);
+//        request.setAttribute("totalClientes", clientes.size());
+//
+//        //3. Redireccionamos el flujo a una nueva pagina
+//        request.getRequestDispatcher("clientes.jsp").forward(request, response);
 
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException,SQLException{
+            throws IOException, ServletException {
         //1. Leemos los parametros de nuestros request
         String accion = request.getParameter("accion");
         if (accion != null) {
-            switch(accion){
+            switch (accion) {
                 case "insertar":
                     this.insertarCliente(request, response);
                     break;
                 default:
-                    this.accionDefault(request,response);
+                    this.accionDefault(request, response);
             }
-        }else{
-            this.accionDefault(request,response);
+        } else {
+            this.accionDefault(request, response);
         }
     }
-    
+
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
-            throws IOException,ServletException{
-        
+            throws IOException, ServletException {
+
         //1. Obtenemos el listado de los clientes
         List<Cliente> clientes = new ClientesDaoJDBC().listar();
-        System.out.println("clientes= "+clientes);
-        
+        System.out.println("clientes= " + clientes);
+
         //2. Definimos un objeto session para compartir nuestros atributos en un contexto mas amplio
         HttpSession sesion = request.getSession();
-        
+
         //3. Compartir en el nuevo alcance los atributos
         sesion.setAttribute("clientes", clientes);
         sesion.setAttribute("totalClientes", clientes.size());
         sesion.setAttribute("saldoTotal", calcularTotal(clientes));
+
+        //4. Redirigir el flujo desde el controlador a un JSP
+        response.sendRedirect("clientes.jsp");
     }
-    
-    private double calcularTotal(List<Cliente> clientes){
+
+    //Devuelve el saldo total de mis clientes
+    private double calcularTotal(List<Cliente> clientes) {
         double saldoTotal = 0;
-        
+
         for (Cliente cliente : clientes) {
             saldoTotal += cliente.getSaldo();
         }
-        
+
         return saldoTotal;
     }
 
+    //Metodo que inserta un nuevo cliente
+    private void insertarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
+        //1. Recuperamos los parametros del request
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String email = request.getParameter("email");
+        String telefono = request.getParameter("telefono");
+
+        String saldoString = request.getParameter("saldo");
+        double saldo = 0;
+
+        if (saldoString != null && "".equals(saldoString)) {
+            saldo = Double.parseDouble(saldoString);
+        }
+        
+        //2. Creamos nuestro objeto Cliente
+        Cliente cliente = new Cliente(nombre, apellido, email, telefono, saldo);
+        
+        //3. Invocamos al metodo de acceso a datos que insertar un cliente
+        int registrosModificados = new ClientesDaoJDBC().insertar(cliente);
+        System.out.println("registrosModificados = "+registrosModificados);
+        
+        //4. Redirigimos a la accion por defecto
+        this.accionDefault(request, response);
+    }
 }
