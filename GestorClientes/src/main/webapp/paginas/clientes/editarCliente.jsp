@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                         <label for="telefono">Telefono</label>
                                         <input type="tel" class="form-control" name="telefono"
-                                               required value="${cliente.telefono}">
+                                                value="${cliente.telefono}">
                                     </div>
                                     <div class="form-group">
                                         <label for="saldo">Saldo</label>

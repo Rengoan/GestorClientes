@@ -1,17 +1,22 @@
-<%-- 
-    Document   : BotonesEditarNavegacion
-    Created on : 27 ene. 2022, 10:03:26
-    Author     : Alumno Mañana
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="index.jsp" class="btn btn-primary btn-block">
+                    <i class="fas fa-arrow-left"></i> Regresar al inicio
+                </a>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success btn-block">
+                    <i class="fas fa-check"></i> Guardar cliente
+                </button>
+            </div>
+            <div class="col-md-3">
+                <a href="ServletControlador?accion=eliminar&idCliente=${cliente.idCliente} " 
+                   class="btn btn-success btn-block" data-target="#agregarClienteModal" data-toggle="modal" >
+                    <i class="fas fa-trash"></i> Eliminar cliente
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
