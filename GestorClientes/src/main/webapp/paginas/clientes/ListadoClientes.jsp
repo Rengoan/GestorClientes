@@ -21,7 +21,6 @@
                     <tbody>
                         <c:forEach var="cliente" items="${clientes}" varStatus="status">
                             <tr>
-                                <td>${status.count}</td>
                                 <td>${cliente.idCliente}</td>
                                 <td>${cliente.nombre} ${cliente.apellidos}</td>
                                 <td><fmt:formatNumber value="${cliente.saldo}" 
