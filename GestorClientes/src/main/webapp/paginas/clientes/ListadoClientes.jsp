@@ -27,7 +27,7 @@
                                 <td><fmt:formatNumber value="${cliente.saldo}" 
                                                   type="currency" currencySymbol="&euro;"/></td>
                                 <td>
-                                    <a href="ServletControlador?accion=editarCliente&idCliente=${cliente.idCliente}" 
+                                    <a href="ServletControlador?accion=editar&idCliente=${cliente.idCliente}" 
                                        class="btn btn-block">
                                         <i class="fas fa-angle-double-rigth"></i>Editar
 

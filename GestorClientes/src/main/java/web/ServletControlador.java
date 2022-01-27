@@ -15,7 +15,21 @@ public class ServletControlador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        this.accionDefault(request, response);
+        //1. Leer los parametros de nuestro request
+        String accion = request.getParameter("accion");
+        if (accion != null) {
+            switch(accion){
+                case "editar":
+                    this.editarCliente(request,response);
+                    break;
+                default:
+                    this.accionDefault(request, response);
+            }
+        } else {
+            this.accionDefault(request, response);
+        }
+        
+//        this.accionDefault(request, response);
 //        //1. Obtenemos el listado de los clientes
 //        List<Cliente> clientes = new ClientesDaoJDBC().listar();
 //        double saldoTotal = calcularTotal(clientes);
@@ -106,5 +120,24 @@ public class ServletControlador extends HttpServlet {
         
         //4. Redirigimos a la accion por defecto
 //        this.accionDefault(request, response);
+    }
+    
+    private void editarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException{
+        
+        //1. Recuperamos los parametros
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+        
+        //2. Ahora invocamos al metodo buscar cliente de acceso a datos
+        Cliente cliente = new ClientesDaoJDBC().buscar(new Cliente(idCliente));
+        
+        //3. Compartimos el cliente en el alcance de request
+        request.setAttribute("cliente",cliente);
+        String jspeditar = "/paginas/clientes/editarCliente.jsp";
+        
+        //4. Redirigimos y propagamos
+        request.getRequestDispatcher(jspeditar).forward(request, response);
+        
+        
     }
 }
