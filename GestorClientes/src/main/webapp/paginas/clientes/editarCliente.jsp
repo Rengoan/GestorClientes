@@ -14,7 +14,7 @@
     </head>
     <body>
         <!<!-- Include de nuestro header -->
-        <jsp:include page="/paginas/comunes/header.jsp"/>
+        <jsp:include page="/paginas/comunes/Header.jsp"/>
 
         <form action="ServletControlador?accion=modificar&idCliente=${cliente.idCliente}"
               method="POST" class="was-validated">
