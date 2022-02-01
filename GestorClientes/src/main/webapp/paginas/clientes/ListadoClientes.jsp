@@ -27,8 +27,8 @@
                                                   type="currency" currencySymbol="&euro;"/></td>
                                 <td>
                                     <a href="ServletControlador?accion=editar&idCliente=${cliente.idCliente}" 
-                                       class="btn btn-block">
-                                        <i class="fas fa-angle-double-rigth"></i>Editar
+                                       class="btn btn-block btn-primary">
+                                        <i class="fas fa-angle-double-rigth "></i>Editar
 
                                     </a>
                                 </td>
@@ -64,6 +64,6 @@
 
 <!--Agregamos el modal de agregarCliente-->
 
-<jsp:include page="/paginas/clientes/agregarCliente.jsp"/>                   
+<jsp:include page="/paginas/clientes/agregarCliente.jsp"/>          
 
 

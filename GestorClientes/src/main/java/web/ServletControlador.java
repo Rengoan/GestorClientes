@@ -118,8 +118,8 @@ public class ServletControlador extends HttpServlet {
         int registrosModificados = new ClientesDaoJDBC().insertar(cliente);
         System.out.println("registrosModificados = "+registrosModificados);
         
-        //4. Redirigimos a la accion por defecto
-//        this.accionDefault(request, response);
+//        4. Redirigimos a la accion por defecto
+        this.accionDefault(request, response);
     }
     
     private void editarCliente(HttpServletRequest request, HttpServletResponse response)
