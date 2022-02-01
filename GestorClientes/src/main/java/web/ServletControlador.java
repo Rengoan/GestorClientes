@@ -18,9 +18,9 @@ public class ServletControlador extends HttpServlet {
         //1. Leer los parametros de nuestro request
         String accion = request.getParameter("accion");
         if (accion != null) {
-            switch(accion){
+            switch (accion) {
                 case "editar":
-                    this.editarCliente(request,response);
+                    this.editarCliente(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);
@@ -28,7 +28,7 @@ public class ServletControlador extends HttpServlet {
         } else {
             this.accionDefault(request, response);
         }
-        
+
 //        this.accionDefault(request, response);
 //        //1. Obtenemos el listado de los clientes
 //        List<Cliente> clientes = new ClientesDaoJDBC().listar();
@@ -43,7 +43,6 @@ public class ServletControlador extends HttpServlet {
 //
 //        //3. Redireccionamos el flujo a una nueva pagina
 //        request.getRequestDispatcher("clientes.jsp").forward(request, response);
-
     }
 
     @Override
@@ -110,34 +109,56 @@ public class ServletControlador extends HttpServlet {
         if (saldoString != null && !"".equals(saldoString)) {
             saldo = Double.parseDouble(saldoString);
         }
-        
+
         //2. Creamos nuestro objeto Cliente
         Cliente cliente = new Cliente(nombre, apellido, email, telefono, saldo);
-        
+
         //3. Invocamos al metodo de acceso a datos que insertar un cliente
         int registrosModificados = new ClientesDaoJDBC().insertar(cliente);
-        System.out.println("registrosModificados = "+registrosModificados);
-        
+        System.out.println("registrosModificados = " + registrosModificados);
+
 //        4. Redirigimos a la accion por defecto
         this.accionDefault(request, response);
     }
-    
+
     private void editarCliente(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException{
-        
+            throws IOException, ServletException {
+
         //1. Recuperamos los parametros
         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-        
+
         //2. Ahora invocamos al metodo buscar cliente de acceso a datos
         Cliente cliente = new ClientesDaoJDBC().buscar(new Cliente(idCliente));
-        
+
         //3. Compartimos el cliente en el alcance de request
-        request.setAttribute("cliente",cliente);
+        request.setAttribute("cliente", cliente);
         String jspeditar = "/paginas/clientes/editarCliente.jsp";
-        
+
         //4. Redirigimos y propagamos
         request.getRequestDispatcher(jspeditar).forward(request, response);
-        
-        
+
     }
+
+    private void modificarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
+        //1. Recuperamos los parametros pasados por el formulario
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+
+        String nombre = request.getParameter("nombre");
+        String apellidos = request.getParameter("apellidos");
+        String email = request.getParameter("email");
+        String telefono = request.getParameter("telefono");
+
+        double saldo = 0;
+        String saldoString = request.getParameter("saldo");
+        if (saldoString != null && !"".equals(saldoString)) {
+            saldo = Double.parseDouble(saldoString);
+        }
+
+        //2. Cremos el objeto del cliente que queremos actualizar
+        Cliente cliente = new Cliente(idCliente, nombre, apellidos, email, telefono, saldo);
+
+    }
+
 }
