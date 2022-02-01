@@ -158,6 +158,13 @@ public class ServletControlador extends HttpServlet {
 
         //2. Cremos el objeto del cliente que queremos actualizar
         Cliente cliente = new Cliente(idCliente, nombre, apellidos, email, telefono, saldo);
+        
+        //3. Invocamos el metodo de acceso a datos para actualizar el cliente
+        int registrosModificados = new ClientesDaoJDBC().actualizar(cliente);
+        System.out.println("registros Modificados = " + registrosModificados);
+        
+        //4. Redirigimos a la accion default
+        this.accionDefault(request, response);
 
     }
 
